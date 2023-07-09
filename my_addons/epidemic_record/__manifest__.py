@@ -12,4 +12,5 @@
         "views/epidemic_record_view.xml"
     ],
     'installable': True,
+    "application":True,
 }

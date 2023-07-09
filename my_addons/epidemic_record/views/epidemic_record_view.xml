@@ -1,11 +1,32 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
+<!--    <record id="epidemic_line_tree_view" model="ir.ui.view">-->
+<!--        <field name="name">疫情记录</field>-->
+<!--        <field name="model">epidemic.line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree create="true" edit="true">-->
+<!--                <field name="name"/>-->
+<!--                <field name="date"/>-->
+<!--                <field name="location"/>-->
+<!--                <field name="within_or_abroad"/>-->
+<!--                <field name="epidemic_id"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="epidemic_line_act_window" model="ir.actions.act_window">-->
+<!--        <field name="name">疫情记录</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">epidemic.line</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+
 
     <record id="epidemic_record_tree_view" model="ir.ui.view">
         <field name="name">疫情记录</field>
         <field name="model">epidemic.record</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="true" edit="true">
                 <field name="name"/>
                 <field name="date"/>
                 <field name="state"/>
@@ -18,12 +39,82 @@
         </field>
     </record>
 
+
+    <record id="epidemic_record_form_view" model="ir.ui.view">
+        <field name="name">疫情记录</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group><field name="business_date" string="业务日期" readonly="1"/></group>
+
+                    <group>
+                        <group>
+                            <field name="name" string="姓名" required="1"/>
+                            <field name="is_ill" string="是否确诊"/>
+                            <field name="within_or_abroad" string="境内/境外" required="1"/>
+                            <field name="begin_isolation_date" string="起始隔离日期" attrs="{'invisible': [('is_ill','=',True)]}"/>
+                            <field name="isolation_mode" string="隔离方式" attrs="{'invisible': [('is_ill','=',True)]}"/>
+                            <field name="ill_type" string="感染方式" attrs="{'invisible': [('is_ill','=',False)]}"/>
+                            <field name="date" string="确诊日期" attrs="{'invisible': [('is_ill','=',False)]}"/>
+                        </group>
+                        <group>
+                            <field name="state" string="省" required="1"/>
+                            <field name="city" string="市" required="1"/>
+                            <field name="county" string="区/县" required="1"/>
+                            <field name="street" string="具体地址" required="1"/>
+                            <field name="create_user_id" string="填报人员" readonly="1"/>
+                            <field name="date" string="确诊日期" attrs="{'invisible': [('is_ill','=',False)]}"/>
+                            <field name="creat_time" string="制单时间" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="说明">
+                            <field name="note" placeholder="其他信息"/>
+                        </page>
+                    </notebook>
+                    <notebook>
+                        <page string="接触人员23">
+                            <field name="epidemic_line">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="location"/>
+                                    <field name="within_or_abroad"/>
+
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="date"/>
+                                            <field name="location"/>
+                                            <field name="within_or_abroad"/>
+
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="第二页"></page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
     <record id="epidemic_record_act_window" model="ir.actions.act_window">
         <field name="name">疫情记录</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">epidemic.record</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+
 
     <menuitem name="疫情记录" id="epidemic_record_menu_root" groups="base.group_user" sequence="10"/>
     <menuitem name="疫情记录" id="sec_epidemic_record_menu"
