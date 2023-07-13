@@ -7,10 +7,20 @@
     "author": "youngny",
     'version': '1.0',
     'depends': [],
+
     'data': [
         "security/ir.model.access.csv",
-        "views/epidemic_record_view.xml"
+        "security/epidemic_record_security.xml",
+        "views/epidemic_record_view.xml",
+        "views/sheet_view.xml",
     ],
+
     'installable': True,
-    "application":True,
+    "application": True,
+    'assets': {
+                'web.assets_backend': [
+                    # 'static/src/css/yiqstyle.scss',
+                    'epidemic_record/static/src/scss/yiqstyle.scss'
+                ],
+            },
 }

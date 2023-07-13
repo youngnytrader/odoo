@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<template id="assets_backend_456" inherit_id="epidemic_record_form_view" name="epidemic_assets_backend">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href='/epidemic_record/static/src/scss/yiqstyle.scss'/>
+			</xpath>
+		</template>
+	</data>
+</odoo>
+<!--inherit_id="web.assets_backend" inherit_id="web.assets_backend"-->
+

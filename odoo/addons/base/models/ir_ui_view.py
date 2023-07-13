@@ -98,6 +98,7 @@ def transfer_node_to_modifiers(node, modifiers):
     context_dependent_modifiers = {}
     for attr in ('invisible', 'readonly', 'required'):
         value_str = node.attrib.pop(attr, None)
+        # print(value_str)
         if value_str:
 
             if (attr == 'invisible'
@@ -122,7 +123,7 @@ def transfer_node_to_modifiers(node, modifiers):
                 # Don't set the attribute to False if a dynamic value was
                 # provided (i.e. a domain from attrs or states).
                 modifiers[attr] = value
-
+    # print(node,context_dependent_modifiers)
     if context_dependent_modifiers:
         node.set('context-dependent-modifiers', json.dumps(context_dependent_modifiers))
 

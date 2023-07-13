@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_epidemic_record_group_user,epidemic.record,model_epidemic_record,base.group_user,1,1,1,1
 access_epidemic_line_group_user,epidemic.line,model_epidemic_line,base.group_user,1,1,1,1
+access_epidemic_line2_group_user,epidemic.line2,model_epidemic_line2,base.group_user,1,1,1,1

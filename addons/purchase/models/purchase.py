@@ -224,6 +224,7 @@ class PurchaseOrder(models.Model):
             self.order_line.filtered(lambda line: not line.display_type).date_planned = self.date_planned
 
     def write(self, vals):
+        #{'state': 'done', 'priority': '0'}
         vals, partner_vals = self._write_partner_values(vals)
         res = super().write(vals)
         if partner_vals:
